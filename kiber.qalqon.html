@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiberQalqon - Mukammal Axborot Portali</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb; --secondary: #0f172a; --success: #10b981; 
+            --danger: #ef4444; --warning: #f59e0b; --bg: #f8fafc; --white: #ffffff; --gold: #d4af37;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg); color: var(--secondary); line-height: 1.6; }
+
+        nav { background: var(--secondary); color: white; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow-x: auto; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; gap: 8px; }
+        nav button { background: rgba(255,255,255,0.1); border: none; color: white; padding: 10px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: 600; white-space: nowrap; }
+        nav button:hover, nav button.active { background: var(--primary); }
+
+        .container { max-width: 1000px; margin: 25px auto; padding: 0 20px; }
+        .section { display: none; animation: fadeIn 0.4s ease; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { background: var(--white); padding: 25px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 25px; border: 1px solid #e2e8f0; }
+        
+        /* Oltin Qoidalar Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
+        .item-card { background: #f8fafc; padding: 15px; border-radius: 12px; border-left: 4px solid var(--primary); }
+        .gold-card { border-left-color: var(--gold); background: #fffcf0; }
+
+        /* Yangiliklar Styles */
+        .news-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 15px; }
+        .news-card { border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: 0.3s; }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.05); }
+        .news-img { height: 120px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+
+        /* Quiz Styles */
+        .quiz-option { border: 2px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; cursor: pointer; padding: 12px; transition: 0.2s; }
+        .quiz-option.correct { border-color: var(--success); background: #ecfdf5; }
+        .quiz-option.wrong { border-color: var(--danger); background: #fef2f2; }
+
+        .law-item { background: #fff5f5; padding: 15px; border-radius: 10px; border-left: 5px solid var(--danger); margin-bottom: 12px; }
+        .ariza-text { font-family: 'Times New Roman', serif; font-size: 1.1rem; background: #fff; padding: 30px; border: 1px solid #ddd; white-space: pre-wrap; }
+        .btn { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 700; width: 100%; transition: 0.3s; }
+        
+        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <button onclick="showSection('home', this)" class="active">🏠 Asosiy</button>
+        <button onclick="showSection('news', this)">📰 Yangiliklar</button>
+        <button onclick="showSection('laws', this)">⚖️ Javobgarlik</button>
+        <button onclick="showSection('check', this)">🔍 Havola</button>
+        <button onclick="showSection('quiz', this)">📝 Imtihon</button>
+        <button onclick="showSection('help', this)">🚨 Yordam</button>
+    </div>
+</nav>
+
+<div class="container">
+    <div id="home" class="section active">
+        <div class="card" style="background: linear-gradient(135deg, #0f172a, #2563eb); color: white; border: none;">
+            <h1>Kibermadaniyat — Kelajak Poydevori </h1>
+            <p style="margin-top: 10px;">Xavfsiz internet va raqamli madaniyat bo'yicha oltin qoidalar.</p>
+        </div>
+        <div class="card">
+            <h2 style="color: var(--gold); margin-bottom: 15px;">🌟 Foydalanuvchilar uchun oltin qoidalar</h2>
+            <div class="grid">
+                <div class="item-card gold-card"><b>🔐 Kuchli parollar</b><p>Murakkab va noyob parollardan foydalaning.</p></div>
+                <div class="item-card gold-card"><b>📱 2FA himoyasi</b><p>Ikki faktorli autentifikatsiyani yoqing (Telegram, Gmail).</p></div>
+                <div class="item-card gold-card"><b>🔄 Muntazam yangilash</b><p>Tizim va ilovalarni doim yangilab turing.</p></div>
+                <div class="item-card gold-card"><b>🚫 Shubhali .APK</b><p>Begona manbalardan dastur o'rnatmang.</p></div>
+                <div class="item-card gold-card"><b>🔗 Havolalar</b><p>Yutuq yoki bonus va'da qilgan havolalarga kirmang.</p></div>
+                <div class="item-card gold-card"><b>📞 SMS Kod</b><p>Bankdanman degan kishiga ham SMS kodni aytmang!</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="news" class="section">
+        <div class="card">
+            <h2>📰 So'nggi kiber-yangiliklar</h2>
+            <div class="news-container">
+                <div class="news-card">
+                    <div class="news-img">📱</div>
+                    <div style="padding:15px;">
+                        <small style="color:var(--primary)">6-Aprel, 2026</small>
+                        <h4 style="margin:5px 0;">Telegramda yangi fishing</h4>
+                        <p style="font-size:0.85rem; color:#64748b;">"Premium bepul" xabarlari orqali ma'lumotlar o'g'irlanmoqda.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-img">🏦</div>
+                    <div style="padding:15px;">
+                        <small style="color:var(--primary)">5-Aprel, 2026</small>
+                        <h4 style="margin:5px 0;">QR-kod firibgarligi</h4>
+                        <p style="font-size:0.85rem; color:#64748b;">Soxta QR-kodlar orqali to'lov tizimlariga hujum ko'paydi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="laws" class="section">
+        <div class="card">
+            <h2 style="color: var(--danger); margin-bottom: 20px;">⚖️ Jinoiy Javobgarlik (JK Moddalari)</h2>
+    
+            <div class="law-item">
+                <b>📌 JK 278-1-modda: Axborotlashtirish qoidalarini buzish</b>
+                Axborot tizimidan foydalanish qoidalarini buzish orqali ma’lumotlarning yo‘qolishi yoki tizimning ishdan chiqishiga sabab bo‘lish.
+                
+                <strong>Asosiy jazo:</strong> BHMning 100 baravarigacha jarima, 2 yilgacha axloq tuzatish ishlari yoki 1 yilgacha ozodlikdan mahrum qilish.
+                <strong>Og‘ir oqibatlar bo‘lsa:</strong> 1 yildan 3 yilgacha ozodlikdan mahrum qilish.
+            </div>
+    
+            <div class="law-item">
+                <b>📌 JK 278-2-modda: Kompyuter axborotidan ruxsatsiz foydalanish</b>
+                O‘zganing kompyuter ma’lumotlariga ruxsatsiz (himoyani buzib) kirish.
+                
+                <strong>Asosiy jazo:</strong> BHMning 100 dan 300 baravarigacha jarima, 2 yilgacha axloq tuzatish ishlari yoki 1 yildan 3 yilgacha ozodlikni cheklash/mahrum qilish.
+                <strong>Guruh bo‘lib sodir etilsa:</strong> 3 yildan 5 yilgacha ozodlikdan mahrum qilish.
+            </div>
+    
+            <div class="law-item">
+                <b>📌 JK 278-3-modda: Maxsus xakerlik vositalari bilan bog‘liq jinoyatlar</b>
+                Xakerlik dasturlarini yoki maxsus vositalarni ruxsatsiz kirish maqsadida tayyorlash, sotish yoki tarqatish.
+                
+                <strong>Jazo:</strong> BHMning 300 dan 500 baravarigacha jarima, 2 yildan 3 yilgacha axloq tuzatish ishlari yoki 1 yildan 3 yilgacha ozodlikdan mahrum qilish.
+            </div>
+    
+            <div class="law-item">
+                <b>📌 JK 278-4-modda: Kompyuter axborotini modifikatsiyalashtirish</b>
+                Tizimdagi mavjud ma’lumotlarni qonunga xilof ravishda o‘zgartirish yoki o‘chirib tashlash.
+                
+                <strong>Jazo:</strong> BHMning 100 dan 300 baravarigacha jarima, 3 yilgacha axloq tuzatish ishlari yoki 3 yilgacha ozodlikdan mahrum qilish.
+            </div>
+    
+            <div class="law-item">
+                <b>📌 JK 278-5-modda: Kompyuter sabotaji</b>
+                Kompyuter tizimi yoki tarmog‘ini ataylab falaj qilish (ishini to‘xtatish).
+                
+                <strong>Jazo:</strong> 3 yilgacha ozodlikni cheklash yoki 3 yilgacha ozodlikdan mahrum qilish.
+                <strong>Xavfli retsidivistlar tomonidan:</strong> 3 yildan 5 yilgacha ozodlikdan mahrum qilish.
+            </div>
+    
+            <div class="law-item">
+                <b>📌 JK 278-6-modda: Zarar keltiruvchi dasturlarni (viruslarni) tarqatish</b>
+                Kompyuter viruslarini yaratish, ulardan foydalanish yoki qasddan tarqatish.
+                
+                <strong>Jazo:</strong> BHMning 100 dan 300 baravarigacha jarima yoki 2 yilgacha ozodlikni cheklash/mahrum qilish.
+                <strong>Og‘ir oqibatlar bo‘lsa:</strong> 3 yildan 5 yilgacha ozodlikdan mahrum qilish.
+            </div>
+        </div>
+    </div>
+
+    <div id="check" class="section">
+        <div class="card">
+            <h2>🔍 Havolani tahlil qilish</h2>
+            <input type="text" id="urlInput" class="btn" style="background:white; color:black; border:1px solid #ddd; margin-bottom:10px;" placeholder="URLni kiriting (masalan: click-bonus.uz)">
+            <button class="btn" onclick="analyzeURL()">Tekshirish</button>
+            <div id="checkResult" style="margin-top:20px; display:none; padding:15px; border-radius:12px; border:1px solid transparent;"></div>
+        </div>
+    </div>
+
+    <div id="quiz" class="section">
+        <div class="card" id="quiz-card">
+            <h2>📝 Kiber-Imtihon (15 savol)</h2>
+            <p id="q-counter" style="color: var(--primary); font-weight: bold; margin: 10px 0;">Savol: 1 / 15</p>
+            <div id="quiz-content">
+                <h3 id="q-text" style="margin-bottom: 15px;"></h3>
+                <div id="options-list"></div>
+                <div id="quiz-feedback" style="margin-top:15px; font-weight:bold; display:none; padding:10px; border-radius:8px;"></div>
+            </div>
+            <button id="next-btn" class="btn" onclick="handleNextQ()" style="display:none; margin-top:15px;">Keyingi savol ➔</button>
+        </div>
+    </div>
+
+    <div id="help" class="section">
+        <div class="card" style="border-top: 5px solid var(--danger);">
+            <h2 style="color: var(--danger);">🚨 Kiberhujumga uchraganda nima qilish kerak?</h2>
+            <p style="margin: 10px 0 20px;">Vahimaga tushmang va quyidagi tizimli harakatlarni bajaring:</p>
+            
+            <div class="emergency-step"><h4>1. Aloqani uzing (Izolyatsiya)</h4><p>Darhol internetni (Wi-Fi va mobil ma’lumotlar) o‘chiring. Bu ma’lumotlar o‘g‘irlanishini to‘xtatadi.</p></div>
+            <div class="emergency-step"><h4>2. Parollarni darhol almashtiring</h4><p>Buzib kirilgan va unga bog‘liq barcha akkauntlar parolini boshqa toza qurilmadan o‘zgartiring.</p></div>
+            <div class="emergency-step"><h4>3. Ikki bosqichli himoyani (2FA) yoqing</h4><p>Xaker parolni bilsa ham akkauntga kira olmasligi uchun 2FA funksiyasini faollashtiring.</p></div>
+            <div class="emergency-step"><h4>4. Bank kartalarini bloklang</h4><p>Mablag‘lar yechib olinishining oldini olish uchun darhol bankka qo‘ng‘iroq qiling va kartani muzlating.</p></div>
+            <div class="emergency-step"><h4>5. Qurilmani tekshiring (Antivirus)</h4><p>Antivirus skanerini o‘tkazing yoki eng xavfsiz yo‘l - "Zavod sozlamalariga qaytarish"ni bajaring.</p></div>
+            <div class="emergency-step"><h4>6. Yaqinlaringizni ogohlantiring</h4><p>Sizning nomingizdan pul so'rashsa ishonmasliklari uchun yaqinlaringizga xabar bering.</p></div>
+            <div class="emergency-step"><h4>7. Organlarga murojaat qiling</h4><p>IIV kiberxavfsizlik bo‘limi: <b>102</b> yoki <b>1102</b> raqamiga qo'ng'iroq qiling.</p></div>
+        </div>
+
+        <div class="card">
+            <h2>⚖️ Huquqiy murojaat shabloni</h2>
+            <div class="ariza-text" style="margin-top:15px;">
+Kimga: [Hudud] IIB boshlig‘iga
+Kimdan: [F.I.SH.], [Manzil va Telefon]
+
+                           ARIZA
+2026-yil "[kun]" [oy] kuni soat [vaqt] atrofida noma’lum shaxs o‘zini [bank xodimi] deb tanishtirib, [plastik karta raqami] kartamdan [summa] miqdordagi pulni yechib oldi. Firibgar bilan [Telegram/Telefon] orqali bog‘landim (Raqam: [raqam]).
+
+Yuqoridagilarni inobatga olib, ushbu shaxsga nisbatan qonuniy chora ko‘rishingizni so‘rayman.
+
+Sana: [Sana] | Imzo: [Imzo]
+            </div>
+            <div style="margin-top:20px; padding:15px; background: #eff6ff; border-radius:10px;">
+                <p>🏦 <b>Markaziy Bank:</b> +998 71 212 62 05</p>
+                <p>👨💻 <b>Admin:</b> @komilova_1128</p>
+            </div>
+        </div>
+    </div>
+
+<footer>&copy; 2026 KiberQalqon - Xavfsizligingiz o'z qo'lingizda</footer>
+
+<script>
+    function showSection(id, btn) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if(id === 'quiz') { qIdx = 0; score = 0; loadQuiz(); }
+        window.scrollTo(0,0);
+    }
+
+   // URL ANALYZER (HAQIQIY TEKSHIRUV LOGIKASI)
+   function analyzeURL() {
+        const url = document.getElementById('urlInput').value.toLowerCase().trim();
+        const res = document.getElementById('checkResult');
+        res.style.display = "block";
+        
+        if (!url) { res.innerText = "Iltimos, havolani kiriting!"; return; }
+
+        const maliciousPatterns = ['bonus', 'yutuq', 'sovg', 'prize', 'gift', 'click-uz.info', 'payme-uz.net', 'olx-dostavka', 'telegram-prize'];
+        let score = 0;
+        let reasons = [];
+
+        maliciousPatterns.forEach(p => { if(url.includes(p)) { score += 40; reasons.push(`"${p}" shubhali so'zi aniqlandi.`); } });
+        if(!url.startsWith('https://')) { score += 30; reasons.push("Xavfsiz 'https' protokoli mavjud emas."); }
+        if(url.split('.').length > 3) { score += 20; reasons.push("Subdomenlar soni shubhali darajada ko'p."); }
+
+        if (score >= 60) {
+            res.style.background = "#fef2f2"; res.style.borderColor = "#ef4444"; res.style.color = "#b91c1c";
+            res.innerHTML = `<strong>🚨 DIQQAT: HAVOLA XAVFLI! (Fishing ehtimoli: ${score}%)</strong><br>Sabablar: ${reasons.join(' ')}`;
+        } else if (score > 0) {
+            res.style.background = "#fffbeb"; res.style.borderColor = "#f59e0b"; res.style.color = "#92400e";
+            res.innerHTML = `<strong>⚠️ SHUBHALI: Ehtiyot bo'ling!</strong><br>Sabablar: ${reasons.join(' ')}`;
+        } else {
+            res.style.background = "#f0fdf4"; res.style.borderColor = "#22c55e"; res.style.color = "#166534";
+            res.innerHTML = `<strong>✅ XAVFSIZ: Hozircha shubhali belgilar topilmadi.</strong><br>Lekin baribir rasmiy sayt ekanligiga ishonch hosil qiling.`;
+        }
+    }
+
+    // QUIZ DATA (15 Savol)
+    const quizData = [
+        { q: "Fishing hujumining asosiy maqsadi?", a: ["Internet tezlatish", "Ma'lumot o'g'irlash", "Dizayn o'zgartirish"], c: 1 },
+        { q: "2FA nima uchun kerak?", a: ["Tez kirish", "Qo'shimcha himoya", "Rasm qo'yish"], c: 1 },
+        { q: "Eng xavfsiz parol?", a: ["12345", "ism1995", "Kiber#2026!X"], c: 2 },
+        { q: ".apk faylni begona yuborsa?", a: ["O'chirib tashlash", "Ochib ko'rish", "Tarqatish"], c: 0 },
+        { q: "'https://' nimani anglatadi?", a: ["Tezlik", "Xavfsiz ulanish", "Reklama"], c: 1 },
+        { q: "Ochiq Wi-Fi da nima qilmaslik kerak?", a: ["Kino ko'rmaslik", "Bank amallari", "O'yin o'ynash"], c: 1 },
+        { q: "JK 278-6-modda nima haqida?", a: ["O'g'rilik", "Virus yaratish", "Haqorat"], c: 1 },
+        { q: "Kompyuter sabotaji nima?", a: ["Tizimni falaj qilish", "Dastur sotish", "Kompyuter buzish"], c: 0 },
+        { q: "Bank SMS kod so'raydimi?", a: ["Ha", "Yo'q, hech qachon", "Faqat bir marta"], c: 1 },
+        { q: "'Yutuq chiqdi' linki kelsa?", a: ["Linkka kirish", "O'chirib yuborish", "Javob yozish"], c: 1 },
+        { q: "Yangilanish nima uchun muhim?", a: ["Dizayn uchun", "Xavfsizlik uchun", "Joy ochish"], c: 1 },
+        { q: "Ijtimoiy muhandislik nima?", a: ["Robot yasash", "Aldash usuli", "Kabel ulash"], c: 1 },
+        { q: "Hujumda 1-qadam nima?", a: ["Kutish", "Internetni uzish", "O'chirish"], c: 1 },
+        { q: "Ruxsatsiz kirish jazosi?", a: ["Faqat jarima", "Jinoiy javobgarlik", "Hech narsa"], c: 1 },
+        { q: "Pasport rasmini qayerda saqlash xavfsiz?", a: ["Instagram", "2FA yoqilgan Telegram", "Ochiq profil"], c: 1 }
+    ];
+
+    let qIdx = 0, score = 0;
+    function loadQuiz() {
+        const d = quizData[qIdx];
+        document.getElementById('q-counter').innerText = `Savol: ${qIdx + 1} / ${quizData.length}`;
+        document.getElementById('q-text').innerText = d.q;
+        document.getElementById('quiz-feedback').style.display = "none";
+        document.getElementById('next-btn').style.display = "none";
+        const list = document.getElementById('options-list'); list.innerHTML = "";
+        d.a.forEach((opt, i) => {
+            const div = document.createElement('div'); div.className = 'quiz-option';
+            div.innerText = opt;
+            div.onclick = () => checkAns(i, div);
+            list.appendChild(div);
+        });
+    }
+
+    function checkAns(i, el) {
+        if(document.getElementById('next-btn').style.display === "block") return;
+        const correct = quizData[qIdx].c;
+        const feedback = document.getElementById('quiz-feedback'); feedback.style.display = "block";
+        if(i === correct) {
+            el.classList.add('correct'); score++;
+            feedback.innerText = "✅ To'g'ri!"; feedback.style.background = "#ecfdf5"; feedback.style.color = "#065f46";
+        } else {
+            el.classList.add('wrong');
+            feedback.innerText = "❌ Noto'g'ri! To'g'ri javob: " + quizData[qIdx].a[correct];
+            feedback.style.background = "#fef2f2"; feedback.style.color = "#b91c1c";
+        }
+        document.getElementById('next-btn').style.display = "block";
+    }
+
+    function handleNextQ() {
+        qIdx++;
+        if(qIdx < quizData.length) loadQuiz();
+        else document.getElementById('quiz-card').innerHTML = `<h2>Natija: ${score} / ${quizData.length}</h2><button class="btn" onclick="location.reload()">Qayta boshlash</button>`;
+    }
+
+   
+</script>
+</body>
+</html>
+
